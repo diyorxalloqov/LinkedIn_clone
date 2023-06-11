@@ -1,3 +1,4 @@
+import 'package:custom_line_indicator_bottom_navbar/custom_line_indicator_bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:linkedin/ui/category/appBars/HomeAppBar.dart';
 import 'package:linkedin/ui/category/appBars/JobsAppBar.dart';
@@ -30,34 +31,32 @@ class _HomePageState extends State<HomePage> {
     Home(),
     MyNetwork(),
     Posts(),
-    Notification1(),
+    NotificationPage(),
     Jobs()
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const  Color.fromRGBO(3, 26, 49, 1),
+      backgroundColor: const Color.fromRGBO(3, 26, 49, 1),
       appBar: PreferredSize(
           preferredSize: const Size(double.infinity, 70),
           child: _appBars[_currentindex]),
       body: _screens[_currentindex],
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: CustomLineIndicatorBottomNavbar(
         currentIndex: _currentindex,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: const Color(0xffC4C4C4),
+        selectedIconSize: 25,
+        unselectedIconSize: 20,
+        selectedColor: Colors.white,
+        unSelectedColor: const Color(0xffC4C4C4),
         backgroundColor: const Color(0xff031A31),
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_search), label: "My Network"),
-          BottomNavigationBarItem(icon: Icon(Icons.add_box), label: "Post"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.notifications_none_outlined),
-              label: "Notification"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_bag), label: "Jobs"),
+        customBottomBarItems: [
+          CustomBottomBarItems(icon: Icons.home_filled, label: "Home"),
+          CustomBottomBarItems(icon: Icons.person_search, label: "My Network"),
+          CustomBottomBarItems(icon: Icons.add_box, label: "Post"),
+          CustomBottomBarItems(
+              icon: Icons.notifications_none_outlined, label: "Notification"),
+          CustomBottomBarItems(icon: Icons.shopping_bag, label: "Jobs"),
         ],
         onTap: (value) {
           _currentindex = value;

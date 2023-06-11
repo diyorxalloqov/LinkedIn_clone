@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:linkedin/ui/pages/HomePage.dart';
+import 'package:linkedin/ui/pages/MainPage.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
@@ -16,26 +16,7 @@ class SplashPage extends StatelessWidget {
     );
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              height: 535,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))
-              ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 100),
-                  child: Center(
-                              child: Image.asset("assets/linkedin Logo.png")
-                            ),
-                )),
-          ],
-        ),
-      ),
+      body: Center(child: Image.asset("assets/logo.png",width: 250,)),
     );
   }
 }
