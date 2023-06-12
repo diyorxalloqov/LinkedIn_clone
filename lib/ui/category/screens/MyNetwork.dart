@@ -90,6 +90,12 @@ class MyNetwork extends StatelessWidget {
                               width: 100,
                               height: 50,
                             )),
+                            Positioned(
+                                child: Container(
+                              color: Colors.red,
+                              width: 50,
+                              height: 50,
+                            )),
                           ]);
                     },
                     itemCount: 15,
