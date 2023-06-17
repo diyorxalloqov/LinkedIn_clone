@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 class Jobs extends StatelessWidget {
   const Jobs({super.key});
-  // height: MediaQuery.of(context).size.height,
-  // width: MediaQuery.of(context).size.width,
 
   @override
   Widget build(BuildContext context) {
+    Size m = MediaQuery.of(context).size;
     return ListView.builder(
         itemCount: 1,
         itemBuilder: (context, index) {
@@ -56,13 +55,13 @@ class Jobs extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: m.height * 0.02,
                 ),
                 Column(
                   children: [
-                    const ListTile(
-                        leading: CircleAvatar(
+                    ListTile(
+                        leading: const CircleAvatar(
                           radius: 30,
                           backgroundImage: NetworkImage(
                               "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&usqp=CAU"),
@@ -70,36 +69,36 @@ class Jobs extends StatelessWidget {
                         title: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               "sswdvgfeafzdfvsdfvaedsfghdsghdsxZ",
                               style: TextStyle(color: Colors.white),
                             ),
                             SizedBox(
-                              height: 10,
+                              height: m.height * 0.01,
                             )
                           ],
                         ),
                         subtitle: Row(
                           children: [
-                            CircleAvatar(
+                            const CircleAvatar(
                               radius: 10,
                               backgroundImage: NetworkImage(
                                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7ccPhAF4pcIXq7vxH1ITecr9EYyKdc_MEg&usqp=CAU"),
                             ),
-                            CircleAvatar(
+                            const CircleAvatar(
                               radius: 10,
                               backgroundImage: NetworkImage(
                                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&usqp=CAU"),
                             ),
-                            CircleAvatar(
+                            const CircleAvatar(
                               radius: 10,
                               backgroundImage: NetworkImage(
                                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7ccPhAF4pcIXq7vxH1ITecr9EYyKdc_MEg&usqp=CAU"),
                             ),
                             SizedBox(
-                              width: 10,
+                              width: m.width * 0.02,
                             ),
-                            Text(
+                            const Text(
                               "sfdgkdkmslkfjm",
                               style: TextStyle(color: Colors.white),
                             )
@@ -122,8 +121,8 @@ class Jobs extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: m.height * 0.02,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
@@ -433,10 +432,9 @@ class Jobs extends StatelessWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  height: 100,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   child: Center(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           height: MediaQuery.of(context).size.height * 0.1,
@@ -445,13 +443,38 @@ class Jobs extends StatelessWidget {
                                   image: NetworkImage(
                                       "https://media.istockphoto.com/id/1296302942/video/front-view-of-hacker-man-hacking-online-web-site-or-engaging-hacking-into-security-systems.jpg?s=640x640&k=20&c=0UGAEMfa_ypC8HNDoBYwOj59oOOk_5BpwDfx8E04Pus="))),
                         ),
-                        Text(
-                          "Recomended for you",
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          "Want more jobs ?",
                           style: TextStyle(
                               color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 28),
                         ),
+                        SizedBox(
+                          height: m.height * 0.02,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: m.height * 0.04),
+                          child: const Text(
+                              "Search for jobs and we'll serve recommendations\n \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t that match your criteria",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15)),
+                        ),
+                        SizedBox(
+                          height: m.height * 0.02,
+                        ),
+                        TextButton(
+                            onPressed: () {},
+                            child: const Text(
+                              "Search job",
+                              style:
+                                  TextStyle(fontSize: 25, color: Colors.blue),
+                            ))
                       ],
                     ),
                   ),

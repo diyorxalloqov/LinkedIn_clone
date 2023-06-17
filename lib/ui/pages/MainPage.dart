@@ -1,5 +1,5 @@
-import 'package:custom_line_indicator_bottom_navbar/custom_line_indicator_bottom_navbar.dart';
 import 'package:flutter/material.dart';
+import 'package:linkedin/provider/notification_provider.dart';
 import 'package:linkedin/ui/category/appBars/HomeAppBar.dart';
 import 'package:linkedin/ui/category/appBars/JobsAppBar.dart';
 import 'package:linkedin/ui/category/appBars/MyNetworkAppBar.dart';
@@ -10,6 +10,7 @@ import 'package:linkedin/ui/category/screens/Jobs.dart';
 import 'package:linkedin/ui/category/screens/MyNetwork.dart';
 import 'package:linkedin/ui/category/screens/Post.dart';
 import 'package:linkedin/ui/category/screens/Notification.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -43,20 +44,47 @@ class _HomePageState extends State<HomePage> {
           preferredSize: const Size(double.infinity, 70),
           child: _appBars[_currentindex]),
       body: _screens[_currentindex],
-      bottomNavigationBar: CustomLineIndicatorBottomNavbar(
+      bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentindex,
-        selectedIconSize: 25,
-        unselectedIconSize: 20,
-        selectedColor: Colors.white,
-        unSelectedColor: const Color(0xffC4C4C4),
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.white,
+        selectedFontSize: 15,
+        unselectedFontSize: 10,
+        unselectedItemColor: const Color(0xffC4C4C4),
         backgroundColor: const Color(0xff031A31),
-        customBottomBarItems: [
-          CustomBottomBarItems(icon: Icons.home_filled, label: "Home"),
-          CustomBottomBarItems(icon: Icons.person_search, label: "My Network"),
-          CustomBottomBarItems(icon: Icons.add_box, label: "Post"),
-          CustomBottomBarItems(
-              icon: Icons.notifications_none_outlined, label: "Notification"),
-          CustomBottomBarItems(icon: Icons.shopping_bag, label: "Jobs"),
+        items: [
+          const BottomNavigationBarItem(
+              icon: Icon(Icons.home_filled), label: "Home"),
+          const BottomNavigationBarItem(
+              icon: Icon(Icons.person_search), label: "My Network"),
+          const BottomNavigationBarItem(
+              icon: Icon(Icons.add_box), label: "Post"),
+          BottomNavigationBarItem(
+              icon: Stack(alignment: Alignment.topRight, children: [
+                const Icon(Icons.notifications_none),
+                Visibility(
+                    visible: context
+                            .watch<NotificationsProvider>()
+                            .newMessageCount !=
+                        0,
+                    child: Positioned(
+                        child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 8,
+                      child: Text(
+                        Provider.of<NotificationsProvider>(context)
+                            .newMessageCount
+                            .toString(),
+                        style: const TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red),
+                      ),
+                    )))
+              ]),
+              label: "Notification"),
+          const BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_bag), label: "Jobs"),
         ],
         onTap: (value) {
           _currentindex = value;

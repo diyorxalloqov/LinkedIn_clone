@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin/ui/category/notification_message_page.dart';
 
 class NotificationAppBar extends StatelessWidget {
   const NotificationAppBar({super.key});
@@ -7,24 +8,24 @@ class NotificationAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: SizedBox(
-          width: 290,
-          child: TextFormField(
-              decoration: InputDecoration(
-                  fillColor: const Color(0xffDCE6F1),
-                  filled: true,
-                  suffixIcon: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.qr_code_scanner),
-                    color: const Color(0xff031A31),
-                  ),
-                  prefixIcon: const Icon(
-                    Icons.search,
-                    color: Color(0xff585C60),
-                  ),
-                  hintText: 'Search',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10)))),
-        ),
+        width: 290,
+        child: TextFormField(
+            decoration: InputDecoration(
+                fillColor: const Color(0xffDCE6F1),
+                filled: true,
+                suffixIcon: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.qr_code_scanner),
+                  color: const Color(0xff031A31),
+                ),
+                prefixIcon: const Icon(
+                  Icons.search,
+                  color: Color(0xff585C60),
+                ),
+                hintText: 'Search',
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10)))),
+      ),
       backgroundColor: const Color.fromRGBO(3, 26, 49, 1),
       leading: const Padding(
         padding: EdgeInsets.only(left: 10),
@@ -33,8 +34,14 @@ class NotificationAppBar extends StatelessWidget {
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI8DK8HCuvWNyHHg8enmbmmf1ue4AeeF3GDw&usqp=CAU")),
       ),
       actions: [
-        
-        IconButton(onPressed: () {}, icon: const Icon(Icons.chat))
+        IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const NotificationMessage()));
+            },
+            icon: const Icon(Icons.chat))
       ],
     );
   }

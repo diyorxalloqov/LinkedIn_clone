@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.6
   custom_line_indicator_bottom_navbar: ^0.0.8
+  dio: ^5.2.1+1
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
