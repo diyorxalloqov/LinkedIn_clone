@@ -1,4 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:linkedin/db/auth_dbService.dart';
+import 'package:linkedin/provider/auth/LoginProvider.dart';
 import 'package:linkedin/provider/notification_provider.dart';
 import 'package:linkedin/ui/categories/appBars/HomeAppBar.dart';
 import 'package:linkedin/ui/categories/appBars/JobsAppBar.dart';
@@ -203,12 +207,21 @@ class _HomePageState extends State<HomePage> {
                                       },
                                       child: const Text("Cancel")),
                                   TextButton(
-                                      onPressed: () {
+                                      onPressed: () async {
+                                        await AuthDB().deleteAccessToken();
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     LoginPage()));
+                                        Provider.of<LoginProvider>(context,
+                                                listen: false)
+                                            .emailController
+                                            .clear();
+                                        Provider.of<LoginProvider>(context,
+                                                listen: false)
+                                            .passwordController
+                                            .clear();
                                       },
                                       child: const Text("Sign out")),
                                 ],

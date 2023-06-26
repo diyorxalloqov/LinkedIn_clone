@@ -55,10 +55,13 @@ class LoginPage extends StatelessWidget {
                               }
                             },
                             controller: provider.emailController,
-                            decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
+                            decoration: InputDecoration(
+                                errorText: provider.error.isNotEmpty
+                                    ? provider.error
+                                    : null,
+                                border: const OutlineInputBorder(),
                                 hintText: "Email",
-                                hintStyle: TextStyle(fontSize: 20)),
+                                hintStyle: const TextStyle(fontSize: 20)),
                           ),
                           const SizedBox(
                             height: 15,
@@ -72,10 +75,13 @@ class LoginPage extends StatelessWidget {
                                 return null;
                               }
                             },
-                            decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
+                            decoration: InputDecoration(
+                                border: const OutlineInputBorder(),
+                                errorText: provider.error.isNotEmpty
+                                    ? provider.error
+                                    : null,
                                 hintText: "Password",
-                                hintStyle: TextStyle(fontSize: 20)),
+                                hintStyle: const TextStyle(fontSize: 20)),
                           ),
                           const SizedBox(
                             height: 20,

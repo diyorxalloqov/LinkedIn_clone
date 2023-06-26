@@ -22,15 +22,16 @@ class LoginProvider extends ChangeNotifier {
     if (response is AuthModel) {
       isLoading = false;
       await authDB.writeToDB(response.accesToken.toString());
+      // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
           (route) => false);
 
       notifyListeners();
     } else {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(response)));
+      // ScaffoldMessenger.of(context)
+      //     .showSnackBar(SnackBar(content: Text(response)));
       isLoading = false;
       error = response;
       notifyListeners();
