@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin/provider/notification_provider.dart';
-import 'package:linkedin/ui/category/appBars/HomeAppBar.dart';
-import 'package:linkedin/ui/category/appBars/JobsAppBar.dart';
-import 'package:linkedin/ui/category/appBars/MyNetworkAppBar.dart';
-import 'package:linkedin/ui/category/appBars/NotificationAppBar.dart';
-import 'package:linkedin/ui/category/appBars/PostAppBar.dart';
-import 'package:linkedin/ui/category/screens/Home.dart';
-import 'package:linkedin/ui/category/screens/Jobs.dart';
-import 'package:linkedin/ui/category/screens/MyNetwork.dart';
-import 'package:linkedin/ui/category/screens/Post.dart';
-import 'package:linkedin/ui/category/screens/Notification.dart';
+import 'package:linkedin/ui/categories/appBars/HomeAppBar.dart';
+import 'package:linkedin/ui/categories/appBars/JobsAppBar.dart';
+import 'package:linkedin/ui/categories/appBars/MyNetworkAppBar.dart';
+import 'package:linkedin/ui/categories/appBars/NotificationAppBar.dart';
+import 'package:linkedin/ui/categories/appBars/PostAppBar.dart';
+import 'package:linkedin/ui/categories/screens/Home.dart';
+import 'package:linkedin/ui/categories/screens/Jobs.dart';
+import 'package:linkedin/ui/categories/screens/MyNetwork.dart';
+import 'package:linkedin/ui/categories/screens/Post.dart';
+import 'package:linkedin/ui/categories/screens/Notification.dart';
+import 'package:linkedin/ui/pages/auth/loginPage.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,6 +22,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentindex = 0;
+
   final _appBars = const [
     HomeAppBar(),
     MyNetworkAppBar(),
@@ -91,6 +93,133 @@ class _HomePageState extends State<HomePage> {
           setState(() {});
         },
       ),
+      drawer: Drawer(
+          child: ListView(
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                    radius: 40,
+                    backgroundImage: NetworkImage(
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI8DK8HCuvWNyHHg8enmbmmf1ue4AeeF3GDw&usqp=CAU")),
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  "Diyor Xalloqov",
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text("View profile"),
+              ],
+            ),
+          ),
+          const Divider(
+            thickness: 1,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "Groups",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          color: Colors.black),
+                    )),
+                const SizedBox(
+                  height: 25,
+                ),
+                TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "Events",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          color: Colors.black),
+                    )),
+              ],
+            ),
+          ),
+          Padding(
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.38),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: TextButton(
+                          style: TextButton.styleFrom(iconColor: Colors.black),
+                          onPressed: () {},
+                          child: const Row(
+                            children: [
+                              Icon(
+                                Icons.settings,
+                                size: 25,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "Settings",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          )),
+                    ),
+                  ],
+                ),
+                TextButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                title: const Text("Sign out"),
+                                content: const Text(
+                                    "Are you sure you want to sign out?"),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text("Cancel")),
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    LoginPage()));
+                                      },
+                                      child: const Text("Sign out")),
+                                ],
+                              ));
+                    },
+                    child: const Text("Sign out")),
+              ],
+            ),
+          ),
+        ],
+      )),
     );
   }
 }

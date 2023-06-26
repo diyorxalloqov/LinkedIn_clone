@@ -23,11 +23,14 @@ class HomeAppBar extends StatelessWidget {
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(10)))),
       backgroundColor: const Color.fromRGBO(3, 26, 49, 1),
-      leading: const Padding(
-        padding: EdgeInsets.only(left: 10),
-        child: CircleAvatar(
-            backgroundImage: NetworkImage(
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI8DK8HCuvWNyHHg8enmbmmf1ue4AeeF3GDw&usqp=CAU")),
+      leading: Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: InkWell(
+          onTap: () {},
+          child: const CircleAvatar(
+              backgroundImage: NetworkImage(
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI8DK8HCuvWNyHHg8enmbmmf1ue4AeeF3GDw&usqp=CAU")),
+        ),
       ),
       actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.chat))],
     );

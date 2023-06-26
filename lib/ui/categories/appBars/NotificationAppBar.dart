@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:linkedin/ui/category/notification_message_page.dart';
+import 'package:linkedin/provider/notification_provider.dart';
+import 'package:linkedin/ui/categories/notification_message_page.dart';
+import 'package:provider/provider.dart';
 
 class NotificationAppBar extends StatelessWidget {
   const NotificationAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    NotificationsProvider provider =
+        Provider.of<NotificationsProvider>(context);
     return AppBar(
       title: SizedBox(
         width: 290,
@@ -34,14 +38,27 @@ class NotificationAppBar extends StatelessWidget {
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI8DK8HCuvWNyHHg8enmbmmf1ue4AeeF3GDw&usqp=CAU")),
       ),
       actions: [
-        IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const NotificationMessage()));
-            },
-            icon: const Icon(Icons.chat))
+        Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const NotificationMessage()));
+                },
+                icon: const Icon(Icons.chat)),
+            Positioned(
+                child: CircleAvatar(
+                  backgroundColor: Colors.blueGrey,
+                    radius: 10,
+                    child: Text(
+                      provider.newMessageCount.toString(),
+                      style: const TextStyle(fontSize: 13),
+                    )))
+          ],
+        )
       ],
     );
   }
